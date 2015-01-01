@@ -89,6 +89,7 @@
         android:text="@string/button_show_me_label"
         android:id="@+id/button_show_me"
         android:layout_weight="1"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:enabled="false" />
 
 </LinearLayout>
