@@ -14,5 +14,6 @@
     <string name="edit_text_verb_ing_hint">Verb ending in \"ing\"</string>
     <string name="edit_text_relative_2_hint">Relative</string>
     <string name="edit_text_name_hint">Name</string>
+    <string name="button_show_me_label">Show me!</string>
 
 </resources>
