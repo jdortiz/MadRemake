@@ -144,6 +144,16 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                intent.putExtra(ResultActivity.ADJECTIVE_1, mAdjective1EditText.getText().toString());
+                intent.putExtra(ResultActivity.ADJECTIVE_2, mAdjective2EditText.getText().toString());
+                intent.putExtra(ResultActivity.ADJECTIVE_3, mAdjective3EditText.getText().toString());
+                intent.putExtra(ResultActivity.BODY_PART, mBodyPartEditText.getText().toString());
+                intent.putExtra(ResultActivity.NAME, mNameEditText.getText().toString());
+                intent.putExtra(ResultActivity.NAME_IN_ROOM, mNameInRoomEditText.getText().toString());
+                intent.putExtra(ResultActivity.RELATIVE_1, mRelative1EditText.getText().toString());
+                intent.putExtra(ResultActivity.RELATIVE_2, mRelative2EditText.getText().toString());
+                intent.putExtra(ResultActivity.VERB_ED, mVerbEdEditText.getText().toString());
+                intent.putExtra(ResultActivity.VERB_ING, mVerbIngEditText.getText().toString());
                 startActivity(intent);
             }
         });
