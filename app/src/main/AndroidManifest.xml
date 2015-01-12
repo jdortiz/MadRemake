@@ -24,6 +24,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.powwau.challenge13.MainActivity" />
         </activity>
+        <activity
+            android:name=".MainFragmentActivity"
+            android:label="@string/title_activity_main_fragment" >
+        </activity>
     </application>
 
 </manifest>

@@ -16,5 +16,6 @@
     <string name="edit_text_name_hint">Name</string>
     <string name="button_show_me_label">Show me!</string>
     <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_main_fragment">MainFragmentActivity</string>
 
 </resources>
