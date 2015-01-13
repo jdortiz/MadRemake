@@ -2,16 +2,19 @@ package com.powwau.challenge13;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainFragmentActivity extends ActionBarActivity {
 
-    @Override
+    final static String LOG_TAG = MainFragmentActivity.class.getSimpleName();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(LOG_TAG, "Creating activity.");
     }
 
 
@@ -35,5 +38,17 @@ public class MainFragmentActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(LOG_TAG, "Resuming activity.");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(LOG_TAG, "Pausing activity.");
     }
 }
