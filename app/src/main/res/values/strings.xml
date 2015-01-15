@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Challenge13</string>
+    <string name="app_name">MadRemake</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="edit_text_relative_1_hint">Relative</string>
@@ -15,8 +15,8 @@
     <string name="edit_text_relative_2_hint">Relative</string>
     <string name="edit_text_name_hint">Name</string>
     <string name="button_show_me_label">Show me!</string>
-    <string name="title_activity_result">ResultActivity</string>
-    <string name="title_activity_main_fragment">MainFragmentActivity</string>
+    <string name="title_activity_result">Results</string>
+    <string name="title_activity_main_fragment">MadRemake</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
