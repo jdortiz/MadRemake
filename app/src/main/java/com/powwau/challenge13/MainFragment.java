@@ -22,6 +22,7 @@ import java.util.EnumSet;
 public class MainFragment extends Fragment {
 
     final static String LOG_TAG = MainFragment.class.getSimpleName();
+    final static String FIELD = "FIELD";
 
     private EditText mAdjective1EditText;
     private EditText mAdjective2EditText;
@@ -72,6 +73,11 @@ public class MainFragment extends Fragment {
         Log.d(LOG_TAG, "Creating fragment view.");
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         prepareViews(rootView);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getBoolean(FIELD + Integer.toString(FilledFields.Adjective1Filled.ordinal()))) {
+                mFilledFieldsEnumSet.add(FilledFields.Adjective1Filled);
+            }
+        }
         return rootView;
     }
 
@@ -171,6 +177,13 @@ public class MainFragment extends Fragment {
     public void onPause() {
         super.onPause();
         Log.d(LOG_TAG, "Pausing fragment.");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(FIELD + Integer.toString(FilledFields.Adjective1Filled.ordinal()),
+                mFilledFieldsEnumSet.contains(FilledFields.Adjective1Filled));
     }
 
     public class ContentWatcher implements TextWatcher {
