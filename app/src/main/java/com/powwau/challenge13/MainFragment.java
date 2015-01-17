@@ -50,6 +50,18 @@ public class MainFragment extends Fragment {
     }
     EnumSet<FilledFields> mFilledFieldsEnumSet = EnumSet.noneOf(FilledFields.class);
 
+    private static class FormState {
+        Boolean mAdjective1Filled;
+
+        public Boolean isAdjective1Filled() {
+            return mAdjective1Filled;
+        }
+
+        public void setAdjective1Filled(Boolean adjective1Filled) {
+            mAdjective1Filled = adjective1Filled;
+        }
+    }
+
     public MainFragment() {
         // Required empty public constructor
     }
@@ -182,6 +194,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        FormState formState = new FormState();
+        formState.setAdjective1Filled(mFilledFieldsEnumSet.contains(FilledFields.Adjective1Filled));
+
         outState.putBoolean(FIELD + Integer.toString(FilledFields.Adjective1Filled.ordinal()),
                 mFilledFieldsEnumSet.contains(FilledFields.Adjective1Filled));
     }
