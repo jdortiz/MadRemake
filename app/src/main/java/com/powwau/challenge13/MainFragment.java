@@ -4,6 +4,8 @@ package com.powwau.challenge13;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,6 +24,7 @@ import java.util.EnumSet;
 public class MainFragment extends Fragment {
 
     final static String LOG_TAG = MainFragment.class.getSimpleName();
+    final static String FORM_STATE = "FORM_STATE";
 
     private EditText mAdjective1EditText;
     private EditText mAdjective2EditText;
@@ -49,10 +52,52 @@ public class MainFragment extends Fragment {
     }
     EnumSet<FilledFields> mFilledFieldsEnumSet = EnumSet.noneOf(FilledFields.class);
 
+    private static class FormState implements Parcelable {
+        public static final Creator<FormState> CREATOR = new Creator<FormState>() {
+
+            @Override
+            public FormState createFromParcel(Parcel source) {
+                return new FormState(source);
+            }
+
+            @Override
+            public FormState[] newArray(int size) {
+                return new FormState[size];
+            }
+        };
+
+        Boolean mAdjective1Filled;
+
+        public FormState() {
+
+        }
+
+        private FormState(Parcel source) {
+            mAdjective1Filled = (source.readInt() == 1);
+        }
+
+        public Boolean isAdjective1Filled() {
+            return mAdjective1Filled;
+        }
+
+        public void setAdjective1Filled(Boolean adjective1Filled) {
+            mAdjective1Filled = adjective1Filled;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(mAdjective1Filled?1:0);
+        }
+    }
+
     public MainFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +117,14 @@ public class MainFragment extends Fragment {
         Log.d(LOG_TAG, "Creating fragment view.");
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         prepareViews(rootView);
+        if (savedInstanceState != null) {
+            FormState formState = savedInstanceState.getParcelable(FORM_STATE);
+            if (formState != null) {
+                if (formState.isAdjective1Filled()) {
+                    mFilledFieldsEnumSet.add(FilledFields.Adjective1Filled);
+                }
+            }
+        }
         return rootView;
     }
 
@@ -171,6 +224,14 @@ public class MainFragment extends Fragment {
     public void onPause() {
         super.onPause();
         Log.d(LOG_TAG, "Pausing fragment.");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        FormState formState = new FormState();
+        formState.setAdjective1Filled(mFilledFieldsEnumSet.contains(FilledFields.Adjective1Filled));
+        outState.putParcelable(FORM_STATE, formState);
     }
 
     public class ContentWatcher implements TextWatcher {
